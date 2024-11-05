@@ -49,7 +49,7 @@ jobs:
       - name: Rust Build Mac & Windows
         if: matrix.os != 'ubuntu-latest'
         run: |
-          cargo build --release --bin trail && cp target/x86_64-unknown-linux-gnu/release/trail trail_${{ matrix.release_suffix }}
+          cargo build --release --bin trail && cp target/release/trail trail_${{ matrix.release_suffix }}
       # TODO: We should probably also run the tests before publishing?
       - name: Release binaries
         uses: softprops/action-gh-release@v2
