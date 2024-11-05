@@ -34,8 +34,10 @@ jobs:
       - name: Release binaries
         uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: false
-          files: trail_${{  github.ref_name }}"_linux_amd64
+          fail_on_unmatched_files: true
+          generate_release_notes: true
+          body_path: CHANGELOG.md
+          files: trail_${{  github.ref_name }}_linux_amd64
 
   release-mac:
     runs-on: macos-latest
@@ -64,5 +66,7 @@ jobs:
       - name: Release binaries
         uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: false
-          files: trail_${{  github.ref_name }}"_darwin_arm64
+          fail_on_unmatched_files: true
+          generate_release_notes: true
+          body_path: CHANGELOG.md
+          files: trail_${{  github.ref_name }}_darwin_arm64
