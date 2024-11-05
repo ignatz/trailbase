@@ -1,10 +1,10 @@
-name: release
 # TODO: We should probably also run the tests before publishing?
+name: release
 
 on:
   push:
     tags:
-      - "test-*.*.*"
+      - "v*.*.*"
 
 jobs:
   release-linux:
@@ -30,7 +30,7 @@ jobs:
       - name: Rust Build
         run: |
           RUSTFLAGS="-C target-feature=+crt-static" cargo build --target x86_64-unknown-linux-gnu --release --bin trail && \
-            zip trailbase_${{  github.ref_name }}_linux_amd64.zip target/x86_64-unknown-linux-gnu/release/trail CHANGELOG.md LICENSE
+            zip -r -j trailbase_${{  github.ref_name }}_linux_amd64.zip target/x86_64-unknown-linux-gnu/release/trail CHANGELOG.md LICENSE
       - name: Release binaries
         uses: softprops/action-gh-release@v2
         with:
@@ -62,7 +62,7 @@ jobs:
       - name: Rust Build
         run: |
           cargo build --release --bin trail && \
-            zip trailbase_${{  github.ref_name }}_darwin_arm64.zip target/release/trail CHANGELOG.md LICENSE
+            zip -r -j trailbase_${{  github.ref_name }}_darwin_arm64.zip target/release/trail CHANGELOG.md LICENSE
       - name: Release binaries
         uses: softprops/action-gh-release@v2
         with:
