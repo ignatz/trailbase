@@ -1,13 +1,12 @@
-name: test
+name: release
 
 on:
-  pull_request:
   push:
-    branches: [main]
+    tags:
+      - "test-*.*.*"
 
 jobs:
-
-  test:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,14 +22,15 @@ jobs:
       - name: PNPM install
         run: |
           pnpm i
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          flutter-version: 3.24.3
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           default: true
-      - uses: actions/setup-python@v3
-      - uses: pre-commit/action@v3.0.1
+      - name: Rust build
+        run: |
+          RUSTFLAGS="-C target-feature=+crt-static" cargo build --target x86_64-unknown-linux-gnu --release --bin trail
+      # We should probably also run the tests before publishing?
+      - name: Release binaries
+        uses: softprops/action-gh-release@v2
+        with:
+          files: target/x86_64-unknown-linux-gnu/release/trail
