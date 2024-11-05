@@ -1,4 +1,5 @@
 name: release
+# TODO: We should probably also run the tests before publishing?
 
 on:
   push:
@@ -6,30 +7,43 @@ on:
       - "test-*.*.*"
 
 jobs:
-  release:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-        # os: [ubuntu-latest, macos-latest, windows-latest]
-        include:
-          - os: ubuntu-latest
-            release_suffix: ubuntu
-          - os: macos-latest
-            release_suffix: mac
-          # - os: windows-latest
-          #   release_suffix: windows
-    runs-on: ${{ matrix.os }}
+  release-linux:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: 'true'
-      - name: Install Linux Dependencies
-        if: matrix.os == 'ubuntu-latest'
+      - name: Install Dependencies
         run: |
           sudo apt-get update && \
             sudo apt-get install -y --no-install-recommends curl libssl-dev pkg-config libclang-dev protobuf-compiler libprotobuf-dev libsqlite3-dev
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: PNPM install
+        run: |
+          pnpm i
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          default: true
+      - name: Rust Build
+        run: |
+          RUSTFLAGS="-C target-feature=+crt-static" cargo build --target x86_64-unknown-linux-gnu --release --bin trail && \
+            cp target/x86_64-unknown-linux-gnu/release/trail trail_${{  github.ref_name }}"_linux_amd64
+      - name: Release binaries
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: false
+          files: trail_${{  github.ref_name }}"_linux_amd64
+
+  release-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
       - name: Install Dependencies
-        if: matrix.os == 'macos-latest'
         run: |
             brew update && brew install pkg-config protobuf sqlite
       - uses: pnpm/action-setup@v4
@@ -41,18 +55,13 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+          target: x86_64-apple-darwin
           default: true
-      - name: Rust Build Linux
-        if: matrix.os == 'ubuntu-latest'
+      - name: Rust Build
         run: |
-          RUSTFLAGS="-C target-feature=+crt-static" cargo build --target x86_64-unknown-linux-gnu --release --bin trail && cp target/x86_64-unknown-linux-gnu/release/trail trail_${{ matrix.release_suffix }}
-      - name: Rust Build Mac & Windows
-        if: matrix.os != 'ubuntu-latest'
-        run: |
-          cargo build --release --bin trail && cp target/release/trail trail_${{ matrix.release_suffix }}
-      # TODO: We should probably also run the tests before publishing?
+          cargo build --release --bin trail && cp target/release/trail trail_${{  github.ref_name }}"_darwin_arm64
       - name: Release binaries
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: false
-          files: trail_${{ matrix.release_suffix }}
+          files: trail_${{  github.ref_name }}"_darwin_arm64
