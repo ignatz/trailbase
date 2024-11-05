@@ -16,7 +16,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update && \
-            sudo apt-get install -y --no-install-recommends curl libssl-dev pkg-config libclang-dev protobuf-compiler libprotobuf-dev libsqlite3-dev
+            sudo apt-get install -y --no-install-recommends curl libssl-dev pkg-config libclang-dev protobuf-compiler libprotobuf-dev libsqlite3-dev zip
       - uses: pnpm/action-setup@v4
         with:
           version: 9
@@ -30,14 +30,14 @@ jobs:
       - name: Rust Build
         run: |
           RUSTFLAGS="-C target-feature=+crt-static" cargo build --target x86_64-unknown-linux-gnu --release --bin trail && \
-            cp target/x86_64-unknown-linux-gnu/release/trail trail_${{  github.ref_name }}_linux_amd64
+            zip trailbase_${{  github.ref_name }}_linux_amd64.zip target/x86_64-unknown-linux-gnu/release/trail CHANGELOG.md LICENSE
       - name: Release binaries
         uses: softprops/action-gh-release@v2
         with:
           fail_on_unmatched_files: true
           generate_release_notes: true
           body_path: CHANGELOG.md
-          files: trail_${{  github.ref_name }}_linux_amd64
+          files: trailbase_${{  github.ref_name }}_linux_amd64.zip
 
   release-mac:
     runs-on: macos-latest
@@ -62,11 +62,11 @@ jobs:
       - name: Rust Build
         run: |
           cargo build --release --bin trail && \
-            cp target/release/trail trail_${{  github.ref_name }}_darwin_arm64
+            zip trailbase_${{  github.ref_name }}_darwin_arm64.zip target/release/trail CHANGELOG.md LICENSE
       - name: Release binaries
         uses: softprops/action-gh-release@v2
         with:
           fail_on_unmatched_files: true
           generate_release_notes: true
           body_path: CHANGELOG.md
-          files: trail_${{  github.ref_name }}_darwin_arm64
+          files: trailbase_${{  github.ref_name }}_darwin_arm64.zip
