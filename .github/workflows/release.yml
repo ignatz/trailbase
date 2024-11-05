@@ -7,7 +7,17 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            release_suffix: ubuntu
+          - os: macos-latest
+            release_suffix: mac
+          - os: windows-latest
+            release_suffix: windows
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -26,11 +36,17 @@ jobs:
         with:
           toolchain: stable
           default: true
-      - name: Rust build
+      - name: Rust Build Linux
+        if: matrix.os == 'ubuntu-latest'
         run: |
-          RUSTFLAGS="-C target-feature=+crt-static" cargo build --target x86_64-unknown-linux-gnu --release --bin trail
-      # We should probably also run the tests before publishing?
+          RUSTFLAGS="-C target-feature=+crt-static" cargo build --target x86_64-unknown-linux-gnu --release --bin trail && cp target/x86_64-unknown-linux-gnu/release/trail trail_${{ matrix.release_suffix }}
+      - name: Rust Build Mac & Windows
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          cargo build --release --bin trail && cp target/x86_64-unknown-linux-gnu/release/trail trail_${{ matrix.release_suffix }}
+      # TODO: We should probably also run the tests before publishing?
       - name: Release binaries
         uses: softprops/action-gh-release@v2
         with:
-          files: target/x86_64-unknown-linux-gnu/release/trail
+          generate_release_notes: false
+          files: trail_${{ matrix.release_suffix }}
