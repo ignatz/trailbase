@@ -30,7 +30,7 @@ jobs:
       - name: Install Dependencies
         if: matrix.os == 'macos-latest'
         run: |
-            sudo brew update && brew install pkg-config libclang-dev protobuf-compiler libprotobuf-dev libsqlite3-dev
+            brew update && brew install pkg-config protobuf sqlite
       - uses: pnpm/action-setup@v4
         with:
           version: 9
