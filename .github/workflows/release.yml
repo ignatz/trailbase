@@ -15,17 +15,22 @@ jobs:
             release_suffix: ubuntu
           - os: macos-latest
             release_suffix: mac
-          - os: windows-latest
-            release_suffix: windows
+          # - os: windows-latest
+          #   release_suffix: windows
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: 'true'
-      - name: Install Dependencies
+      - name: Install Linux Dependencies
+        if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update && \
             sudo apt-get install -y --no-install-recommends curl libssl-dev pkg-config libclang-dev protobuf-compiler libprotobuf-dev libsqlite3-dev
+      - name: Install Dependencies
+        if: matrix.os == 'macos-latest'
+        run: |
+            sudo brew update && brew install pkg-config libclang-dev protobuf-compiler libprotobuf-dev libsqlite3-dev
       - uses: pnpm/action-setup@v4
         with:
           version: 9
