@@ -16,15 +16,15 @@ jobs:
         env:
           GITHUB_REF: ${{  github.ref_name }}
         run: |
-          export VERSION=$(echo ${GITHUB_REF} | sed 's/^v//')
-          awk -v ver=${VERSION} '/^## Version / { if (p) { exit }; if ($3 == ver) { p=1; next } } p && NF' CHANGELOG.md > /tmp/release_notes.md
-          echo "path=/tmp/release_notes.md" >> $GITHUB_OUTPUT
+          export VERSION_NUMBER=$(echo ${GITHUB_REF} | sed 's/^v//')
+          awk "/## v${VERSION_NUMBER}.*/{include=1; next} /## v.*/{include=0} include && NF" CHANGELOG.md > ./CHANGELOG-release.md
+          cat ./CHANGELOG-release.md
 
       - name: Release Change log
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
-          body_path: ${{ steps.release_notes.outputs.path }}
+          body_path: ./CHANGELOG-release.md
 
   release-linux:
     runs-on: ubuntu-latest
