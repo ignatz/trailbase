@@ -16,8 +16,9 @@ jobs:
         env:
           GITHUB_REF: ${{  github.ref_name }}
         run: |
-          export VERSION_NUMBER=$(echo ${GITHUB_REF} | sed 's/^v//')
-          awk "/## v${VERSION_NUMBER}.*/{include=1; next} /## v.*/{include=0} include && NF" CHANGELOG.md > ./CHANGELOG-release.md
+          export VERSION=$(echo ${GITHUB_REF} | sed 's/^v//')
+          echo ${VERSION}
+          awk "/## v${VERSION}.*/{include=1; next} /## v.*/{include=0} include && NF" CHANGELOG.md > ./CHANGELOG-release.md
           cat ./CHANGELOG-release.md
 
       - name: Release Change log

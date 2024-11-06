@@ -1,3 +1,9 @@
+## v0.0.15
+
+### Other Changes 🔄
+
+* Foo
+
 ## v0.0.14
 
 ### Other Changes 🔄
