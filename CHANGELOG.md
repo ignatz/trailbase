@@ -1,16 +1,22 @@
-## v0.0.11
+## Version 0.0.12
+
+### Other Changes 🔄
+
+* filter changelog
+
+## Version 0.0.11
 
 ### Other Changes 🔄
 
 * Build release zip archives
 
-## v0.0.10
+## Version 0.0.10
 
 ### Other Changes 🔄
 
 * Build release zip archives
 
-## v0.0.9
+## Version 0.0.9
 
 * Test entry
 
