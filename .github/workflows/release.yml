@@ -17,7 +17,7 @@ jobs:
           GITHUB_REF: ${{  github.ref_name }}
         run: |
           export VERSION=$(echo ${GITHUB_REF} | sed 's/^v//')
-          echo ${VERSION}
+          echo "VERSION = ${VERSION}"
           awk "/## v${VERSION}.*/{include=1; next} /## v.*/{include=0} include && NF" CHANGELOG.md > ./CHANGELOG-release.md
           cat ./CHANGELOG-release.md
 
@@ -28,6 +28,7 @@ jobs:
           body_path: ./CHANGELOG-release.md
 
   release-linux:
+    needs: changelog
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -60,6 +61,7 @@ jobs:
           files: trailbase_${{  github.ref_name }}_linux_amd64.zip
 
   release-mac:
+    needs: changelog
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3

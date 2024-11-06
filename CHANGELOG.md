@@ -1,3 +1,9 @@
+## v0.0.16
+
+### Other Changes 🔄
+
+* Foo Bar
+
 ## v0.0.15
 
 ### Other Changes 🔄
