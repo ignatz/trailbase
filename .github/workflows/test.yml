@@ -34,3 +34,14 @@ jobs:
           default: true
       - uses: actions/setup-python@v3
       - uses: pre-commit/action@v3.0.1
+
+  build-website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Website Build
+        run: |
+          cd docs && pnpm i && pnpm build
