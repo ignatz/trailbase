@@ -3,6 +3,7 @@ from trailbase import Client, RecordId
 
 import httpx
 import logging
+import os
 import pytest
 import subprocess
 
@@ -19,6 +20,9 @@ class TrailBaseFixture:
     process: None | subprocess.Popen
 
     def __init__(self) -> None:
+        cwd = os.getcwd()
+        traildepot = "../testfixture" if cwd.endswith("trailbase-py") else "client/testfixture"
+
         logger.info("Building TrailBase")
         build = subprocess.run(["cargo", "build"])
         assert build.returncode == 0
@@ -30,7 +34,7 @@ class TrailBaseFixture:
                 "run",
                 "--",
                 "--data-dir",
-                "../testfixture",
+                traildepot,
                 "run",
                 "-a",
                 address,
@@ -52,17 +56,17 @@ class TrailBaseFixture:
 
         logger.error("Failed ot start TrailBase")
 
-
     def isUp(self) -> bool:
         p = self.process
         return p != None and p.returncode == None
 
     def shutdown(self) -> None:
         p = self.process
-        if (p != None):
+        if p != None:
             p.send_signal(9)
             p.wait()
             assert isinstance(p.returncode, int)
+
 
 @pytest.fixture(scope="session")
 def trailbase():
