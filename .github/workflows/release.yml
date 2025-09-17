@@ -35,7 +35,6 @@ jobs:
         run: |
           sudo apt-get update && \
             sudo apt-get install -y --no-install-recommends curl libssl-dev pkg-config libclang-dev protobuf-compiler libprotobuf-dev zip
-
       - uses: pnpm/action-setup@v4
         with:
           version: 9
@@ -73,7 +72,6 @@ jobs:
         run: |
           sudo apt-get update && \
             sudo apt-get install -y --no-install-recommends curl libssl-dev pkg-config libclang-dev protobuf-compiler libprotobuf-dev zip
-
       - uses: pnpm/action-setup@v4
         with:
           version: 9
@@ -111,7 +109,6 @@ jobs:
         run: |
           sudo apt-get update && \
             sudo apt-get install -y --no-install-recommends curl libssl-dev pkg-config libclang-dev protobuf-compiler libprotobuf-dev zip
-
       - uses: pnpm/action-setup@v4
         with:
           version: 9
@@ -134,7 +131,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           fail_on_unmatched_files: true
-          files: trailbase_${{  github.ref_name }}_x86_64_linux.zip
+          files: trailbase_${{  github.ref_name }}_wasm_auth_ui.zip
 
   release-aarch64-apple-darwin:
     needs: changelog
