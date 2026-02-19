@@ -180,7 +180,7 @@ jobs:
 
   release-aarch64-apple-darwin:
     needs: changelog
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v3
         with:
@@ -216,7 +216,7 @@ jobs:
 
   release-x86_64-apple-darwin:
     needs: changelog
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v3
         with:
