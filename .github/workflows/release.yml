@@ -71,7 +71,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends cmake curl pkg-config clang libclang-dev libssl-dev protobuf-compiler libprotobuf-dev zip musl-tools musl-dev
+          sudo apt-get install -y --no-install-recommends cmake curl pkg-config clang libclang-dev libssl-dev protobuf-compiler libprotobuf-dev zip gcc musl-tools musl-dev
           sudo ln -sf /usr/bin/musl-gcc /usr/bin/x86_64-linux-musl-g++
           echo "CC_x86_64_unknown_linux_musl=musl-gcc" >> $GITHUB_ENV
           echo "AR_x86_64_unknown_linux_musl=ar" >> $GITHUB_ENV
@@ -112,7 +112,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends cmake curl pkg-config clang libclang-dev libssl-dev protobuf-compiler libprotobuf-dev zip musl-tools musl-dev
+          sudo apt-get install -y --no-install-recommends cmake curl pkg-config clang libclang-dev libssl-dev protobuf-compiler libprotobuf-dev zip gcc musl-tools musl-dev
           sudo ln -sf /usr/bin/musl-gcc /usr/bin/x86_64-linux-musl-g++
           echo "CC_x86_64_unknown_linux_musl=musl-gcc" >> $GITHUB_ENV
           echo "AR_x86_64_unknown_linux_musl=ar" >> $GITHUB_ENV
