@@ -207,7 +207,7 @@ jobs:
           CMAKE_FLAGS: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
         run: |
           CMAKE_FLAGS=-DCMAKE_POLICY_VERSION_MINIMUM=3.5 CARGO_PROFILE_RELEASE_LTO=fat CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1 PNPM_OFFLINE=TRUE \
-            cargo build --target aarch64-apple-darwin --release --features=static-geos --bin trail && \
+            cargo build --target aarch64-apple-darwin --release --bin trail && \
           zip -r -j trailbase_${{  github.ref_name }}_arm64_apple_darwin.zip target/aarch64-apple-darwin/release/trail CHANGELOG.md LICENSE
 
       - name: Release binaries
@@ -243,7 +243,7 @@ jobs:
           CMAKE_FLAGS: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
         run: |
           CMAKE_FLAGS=-DCMAKE_POLICY_VERSION_MINIMUM=3.5 CARGO_PROFILE_RELEASE_LTO=fat CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1 PNPM_OFFLINE=TRUE \
-            cargo build --target x86_64-apple-darwin --release --features=static-geos --bin trail && \
+            cargo build --target x86_64-apple-darwin --release --bin trail && \
           zip -r -j trailbase_${{  github.ref_name }}_x86_64_apple_darwin.zip target/x86_64-apple-darwin/release/trail CHANGELOG.md LICENSE
 
       - name: Release binaries
