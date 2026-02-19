@@ -177,7 +177,7 @@ jobs:
           submodules: 'true'
       - name: Install Dependencies
         run: |
-            brew update && brew install protobuf sqlite cmake
+            brew update && brew install protobuf sqlite cmake geos
 
       - uses: pnpm/action-setup@v4
         with:
@@ -193,7 +193,7 @@ jobs:
       - name: Rust Build
         run: |
           CARGO_PROFILE_RELEASE_LTO=fat CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1 PNPM_OFFLINE=TRUE \
-            cargo build --target aarch64-apple-darwin --release --features=static-geos --bin trail && \
+            cargo build --target aarch64-apple-darwin --release --bin trail && \
           zip -r -j trailbase_${{  github.ref_name }}_arm64_apple_darwin.zip target/aarch64-apple-darwin/release/trail CHANGELOG.md LICENSE
 
       - name: Release binaries
@@ -211,7 +211,7 @@ jobs:
           submodules: 'true'
       - name: Install Dependencies
         run: |
-            brew update && brew install protobuf sqlite cmake
+            brew update && brew install protobuf sqlite cmake geos
 
       - uses: pnpm/action-setup@v4
         with:
@@ -227,7 +227,7 @@ jobs:
       - name: Rust Build
         run: |
           CARGO_PROFILE_RELEASE_LTO=fat CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1 PNPM_OFFLINE=TRUE \
-            cargo build --target x86_64-apple-darwin --release --features=static-geos --bin trail && \
+            cargo build --target x86_64-apple-darwin --release --bin trail && \
           zip -r -j trailbase_${{  github.ref_name }}_x86_64_apple_darwin.zip target/x86_64-apple-darwin/release/trail CHANGELOG.md LICENSE
 
       - name: Release binaries
