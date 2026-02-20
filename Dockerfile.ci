@@ -2,8 +2,9 @@
 ARG BASE_IMAGE_TAG
 
 # NOTE: We cannot use alpine here because rusqlite's `libsqlite3-sys` with
-# `preupdate-hook` depends on `bindgen` with the `runtime` feature enabled.
-# This in turn requires a dynamically linked libclang.so :/
+# `preupdate-hook` has a **build-time** dependency on the `bindgen` crate with
+# the `runtime` feature enabled. This in turn requires a dynamically linked
+# libclang.so, alpine's `clang-dev` package won't work :/.
 FROM messense/rust-musl-cross:${BASE_IMAGE_TAG} AS builder-x86_64-unknown-linux-musl
 
 # ARGs need to be after FROM.

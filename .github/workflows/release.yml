@@ -65,7 +65,7 @@ jobs:
             -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} \
             -e CARGO_PROFILE_RELEASE_LTO=${{ env.CARGO_PROFILE_RELEASE_LTO }} \
             -e CARGO_PROFILE_RELEASE_CODEGEN_UNITS=${{ env.CARGO_PROFILE_RELEASE_CODEGEN_UNITS }} \
-            -e PNPM_OFFLINE=TRUE \
+            -e PNPM_OFFLINE=${{ env.PNPM_OFFLINE }} \
             builder:latest \
             /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
 
@@ -111,7 +111,7 @@ jobs:
             -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} \
             -e CARGO_PROFILE_RELEASE_LTO=${{ env.CARGO_PROFILE_RELEASE_LTO }} \
             -e CARGO_PROFILE_RELEASE_CODEGEN_UNITS=${{ env.CARGO_PROFILE_RELEASE_CODEGEN_UNITS }} \
-            -e PNPM_OFFLINE=TRUE \
+            -e PNPM_OFFLINE=${{ env.PNPM_OFFLINE }} \
             builder:latest \
             /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
 
