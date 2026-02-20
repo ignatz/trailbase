@@ -1,12 +1,12 @@
 # NOTE: We cannot use alpine here because rusqlite's `libsqlite3-sys` with
 # `preupdate-hook` depends on `bindgen` with the `runtime` feature enabled.
 # This in turn requires a dynamically linked libclang.so :/
-FROM messense/rust-musl-cross:x86_64-musl AS builder-x86_64-unknown-linux-musl
-FROM messense/rust-musl-cross:aarch64-musl AS builder-aarch64-unknown-linux-musl
+ARG BASE_IMAGE_TAG
 
-ARG RUST_TARGET
+# FROM messense/rust-musl-cross:x86_64-musl AS builder-x86_64-unknown-linux-musl
+# FROM messense/rust-musl-cross:aarch64-musl AS builder-aarch64-unknown-linux-musl
 
-FROM builder-${RUST_TARGET}
+FROM messense/rust-musl-cross:${BASE_IMAGE_TAG} AS builder-x86_64-unknown-linux-musl
 
 # ARGs need to be after FROM.
 ARG RUST_TARGET

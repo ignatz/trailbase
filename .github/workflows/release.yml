@@ -52,6 +52,7 @@ jobs:
       - name: Build a Builder Image
         run: |
           docker build -f Dockerfile.ci \
+            --build-arg BASE_IMAGE_TAG=x86_64-musl \
             --build-arg RUST_TARGET=${{ env.RUST_TARGET }} \
             --build-arg RUST_TOOLCHAIN_VERSION=${{ env.TOOLCHAIN_VERSION }} \
             --build-arg WORKSPACE=${{ env.DOCKER_WORKSPACE }} \
@@ -91,6 +92,7 @@ jobs:
       - name: Build a Builder Image
         run: |
           docker build -f Dockerfile.ci \
+            --build-arg BASE_IMAGE_TAG=aarch64-musl \
             --build-arg RUST_TARGET=${{ env.RUST_TARGET }} \
             --build-arg RUST_TOOLCHAIN_VERSION=${{ env.TOOLCHAIN_VERSION }} \
             --build-arg WORKSPACE=${{ env.DOCKER_WORKSPACE }} \
