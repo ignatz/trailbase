@@ -63,7 +63,7 @@ jobs:
           env | tee env-dump && \
             docker run --rm \
               -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} \
-              --env-file=env-dump
+              --env-file=env-dump \
               builder:latest \
               /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
 
@@ -107,7 +107,7 @@ jobs:
           env | tee env-dump && \
             docker run --rm \
               -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} \
-              --env-file=env-dump
+              --env-file=env-dump \
               builder:latest \
               /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
 
