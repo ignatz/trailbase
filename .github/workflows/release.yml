@@ -60,12 +60,14 @@ jobs:
 
       - name: Rust Build using the Builder
         run: |
-          env | tee env-dump && \
-            docker run --rm \
-              -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} \
-              --env-file=env-dump \
-              builder:latest \
-              /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
+          env && \
+          docker run --rm \
+            -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} \
+            -e CARGO_PROFILE_RELEASE_LTO=${{ env.CARGO_PROFILE_RELEASE_LTO }} \
+            -e CARGO_PROFILE_RELEASE_CODEGEN_UNITS={{ env.CARGO_PROFILE_RELEASE_CODEGEN_UNITS }} \
+            -e PNPM_OFFLINE=TRUE \
+            builder:latest \
+            /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
 
       - name: Package Artifacts
         run: |
@@ -104,12 +106,14 @@ jobs:
 
       - name: Rust Build using the Builder
         run: |
-          env | tee env-dump && \
-            docker run --rm \
-              -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} \
-              --env-file=env-dump \
-              builder:latest \
-              /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
+          env && \
+          docker run --rm \
+            -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} \
+            -e CARGO_PROFILE_RELEASE_LTO=${{ env.CARGO_PROFILE_RELEASE_LTO }} \
+            -e CARGO_PROFILE_RELEASE_CODEGEN_UNITS={{ env.CARGO_PROFILE_RELEASE_CODEGEN_UNITS }} \
+            -e PNPM_OFFLINE=TRUE \
+            builder:latest \
+            /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
 
       - name: Package Artifacts
         run: |
