@@ -60,8 +60,12 @@ jobs:
 
       - name: Rust Build using the Builder
         run: |
-          docker run --rm -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} builder:latest \
-            /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
+          env | tee env-dump && \
+            docker run --rm \
+              -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} \
+              --env-file=env-dump
+              builder:latest \
+              /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
 
       - name: Package Artifacts
         run: |
@@ -100,8 +104,12 @@ jobs:
 
       - name: Rust Build using the Builder
         run: |
-          docker run --rm -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} builder:latest \
-            /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
+          env | tee env-dump && \
+            docker run --rm \
+              -v ${{ github.workspace }}:${{ env.DOCKER_WORKSPACE }} \
+              --env-file=env-dump
+              builder:latest \
+              /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=static-geos --bin trail
 
       - name: Package Artifacts
         run: |
