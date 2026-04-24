@@ -151,7 +151,13 @@ impl std::fmt::Display for VersionInfo {
 
 #[must_use]
 fn get_output(cmd: &str, args: &[&str]) -> Option<String> {
-  let output = Command::new(cmd).args(args).output().ok()?;
+  let output = match Command::new(cmd).args(args).output() {
+    Ok(output) => output,
+    Err(err) => {
+      println!("WARN: Failed to run '{cmd} {}': {err}", args.join(" "));
+      return None;
+    }
+  };
   let mut stdout = output.status.success().then_some(output.stdout)?;
   // Remove trailing newlines.
   while stdout.last().copied() == Some(b'\n') {
