@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RUST_TARGET: x86_64-unknown-linux-musl
-      BINARY_PATH: target/${{ env.RUST_TARGET }}/release/trail
+      BINARY_PATH: target/$RUST_TARGET/release/trail
       ARCHIVE_NAME: trailbase_${{  github.ref_name }}_x86_64_linux.zip
       DOCKER_WORKSPACE: /workspace
 
@@ -93,7 +93,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     env:
       RUST_TARGET: aarch64-unknown-linux-musl
-      BINARY_PATH: target/${{ env.RUST_TARGET }}/release/trail
+      BINARY_PATH: target/$RUST_TARGET/release/trail
       ARCHIVE_NAME: trailbase_${{  github.ref_name }}_arm64_linux.zip
       DOCKER_WORKSPACE: /workspace
 
@@ -151,7 +151,7 @@ jobs:
     runs-on: macos-15
     env:
       RUST_TARGET: aarch64-apple-darwin
-      BINARY_PATH: target/${{ env.RUST_TARGET }}/release/trail
+      BINARY_PATH: target/$RUST_TARGET/release/trail
       ARCHIVE_NAME: trailbase_${{  github.ref_name }}_arm64_apple_darwin.zip
     steps:
       - uses: actions/checkout@v6
@@ -193,7 +193,7 @@ jobs:
     runs-on: macos-15
     env:
       RUST_TARGET: x86_64-apple-darwin
-      BINARY_PATH: target/${{ env.RUST_TARGET }}/release/trail
+      BINARY_PATH: target/$RUST_TARGET/release/trail
       ARCHIVE_NAME: trailbase_${{  github.ref_name }}_x86_64_apple_darwin.zip
     steps:
       - uses: actions/checkout@v6
@@ -235,7 +235,7 @@ jobs:
     runs-on: windows-latest
     env:
       RUST_TARGET: x86_64-pc-windows-msvc
-      BINARY_PATH: target/${{ env.RUST_TARGET }}/release/trail
+      BINARY_PATH: target/$RUST_TARGET/release/trail
       ARCHIVE_NAME: trailbase_${{  github.ref_name }}_x86_64_windows.zip
     steps:
       - uses: actions/checkout@v6
@@ -278,7 +278,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RUST_TARGET: wasm32-wasip2
-      BINARY_PATH: target/${{ env.RUST_TARGET }}/release/auth_ui_component.wasm
+      BINARY_PATH: target/$RUST_TARGET/release/trail
       ARCHIVE_NAME: trailbase_${{  github.ref_name }}_wasm_auth_ui.zip
     steps:
       - uses: actions/checkout@v6
