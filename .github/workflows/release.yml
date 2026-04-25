@@ -45,6 +45,8 @@ jobs:
           submodules: 'recursive'
           # No shallow checkout, i.e. fetch all tags (used for versioning the binary).
           fetch-depth: 0
+      - name: Inspect Checkout
+        run: git describe --tags
       - uses: actions/setup-node@v6
         with:
           node-version: 22
@@ -96,6 +98,8 @@ jobs:
           submodules: 'recursive'
           # No shallow checkout, i.e. fetch all tags (used for versioning the binary).
           fetch-depth: 0
+      - name: Inspect Checkout
+        run: git describe --tags
       - uses: actions/setup-node@v6
         with:
           node-version: 22
@@ -145,6 +149,8 @@ jobs:
           submodules: 'recursive'
           # No shallow checkout, i.e. fetch all tags (used for versioning the binary).
           fetch-depth: 0
+      - name: Inspect Checkout
+        run: git describe --tags
       - name: Install Dependencies
         run: brew update && brew install protobuf pnpm
       - name: PNPM install
@@ -181,6 +187,8 @@ jobs:
           submodules: 'recursive'
           # No shallow checkout, i.e. fetch all tags (used for versioning the binary).
           fetch-depth: 0
+      - name: Inspect Checkout
+        run: git describe --tags
       - name: Install Dependencies
         run: brew update && brew install protobuf pnpm
       - name: PNPM install
@@ -217,6 +225,8 @@ jobs:
           submodules: 'recursive'
           # No shallow checkout, i.e. fetch all tags (used for versioning the binary).
           fetch-depth: 0
+      - name: Inspect Checkout
+        run: git describe --tags
       - uses: MinoruSekine/setup-scoop@v4.0.1
         with:
           buckets: extras
@@ -254,6 +264,8 @@ jobs:
           submodules: 'recursive'
           # No shallow checkout, i.e. fetch all tags (used for versioning the binary).
           fetch-depth: 0
+      - name: Inspect Checkout
+        run: git describe --tags
       - name: Install Dependencies
         run: |
           sudo apt-get update && \
