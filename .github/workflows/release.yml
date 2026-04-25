@@ -233,7 +233,7 @@ jobs:
     runs-on: windows-latest
     env:
       RUST_TARGET: x86_64-pc-windows-msvc
-      BINARY_PATH: target/$RUST_TARGET/release/trail
+      BINARY_PATH: target/$RUST_TARGET/release/trail.exe
       ARCHIVE_NAME: trailbase_${{  github.ref_name }}_x86_64_windows.zip
     steps:
       - uses: actions/checkout@v6
