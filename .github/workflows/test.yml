@@ -32,7 +32,9 @@ jobs:
       - run: df -h
       - uses: actions/checkout@v6
         with:
-          submodules: 'true'
+          submodules: 'recursive'
+          # No shallow checkout, i.e. fetch all tags (used for versioning the binary).
+          fetch-depth: 0
       - name: Inspect Checkout
         run: git describe --tags
       - name: Install Dependencies
