@@ -132,9 +132,7 @@ jobs:
             -e CARGO_PROFILE_RELEASE_CODEGEN_UNITS=${{ env.CARGO_PROFILE_RELEASE_CODEGEN_UNITS }} \
             -e PNPM_OFFLINE=FALSE \
             builder:latest \
-              pwd && \
-              git describe --tags && \
-              sh -c "/root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=geos-static --bin trail"
+              sh -c "pwd && git describe --tags && /root/.cargo/bin/cargo build --target ${{ env.RUST_TARGET }} --release --features=geos-static --bin trail"
 
       - name: Package Artifacts
         run: |
@@ -278,7 +276,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RUST_TARGET: wasm32-wasip2
-      BINARY_PATH: target/$RUST_TARGET/release/trail
+      BINARY_PATH: target/$RUST_TARGET/release/auth_ui_component.wasm
       ARCHIVE_NAME: trailbase_${{  github.ref_name }}_wasm_auth_ui.zip
     steps:
       - uses: actions/checkout@v6
