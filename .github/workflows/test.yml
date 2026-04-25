@@ -29,7 +29,8 @@ jobs:
           large-packages: false
           docker-images: true
           swap-storage: true
-      - run: df -h
+      - name: Monitor Disk Space (Post Cleanup)
+        run: df -h
       - uses: actions/checkout@v6
         with:
           submodules: 'recursive'

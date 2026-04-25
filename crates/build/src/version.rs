@@ -224,19 +224,7 @@ pub fn get_commit_date() -> Option<String> {
 
 #[must_use]
 pub fn get_version_tag() -> Option<String> {
-  let version = get_output("git", &["describe", "--tags", "--match=v*", "--long"]);
-
-  match version {
-    None => {
-      panic!("GOT NONE");
-    }
-    Some(v) if v.is_empty() => {
-      panic!("GOT EMPTY");
-    }
-    _ => {}
-  };
-
-  return version;
+  return get_output("git", &["describe", "--tags", "--match=v*", "--long"]);
 }
 
 #[must_use]
