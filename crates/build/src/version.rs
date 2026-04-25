@@ -154,11 +154,13 @@ fn get_output(cmd: &str, args: &[&str]) -> Option<String> {
   let output = match Command::new(cmd).args(args).output() {
     Ok(output) => output,
     Err(err) => {
-      println!("WARN: Failed to run '{cmd} {}': {err}", args.join(" "));
+      panic!("WARN: Failed to run '{cmd} {}': {err}", args.join(" "));
       return None;
     }
   };
   let mut stdout = output.status.success().then_some(output.stdout)?;
+
+  println!("GOT: {stdout:?}");
   // Remove trailing newlines.
   while stdout.last().copied() == Some(b'\n') {
     stdout.pop();
@@ -207,7 +209,19 @@ pub fn get_commit_date() -> Option<String> {
 
 #[must_use]
 pub fn get_version_tag() -> Option<String> {
-  return get_output("git", &["describe", "--tags", "--match=v*", "--long"]);
+  let version = get_output("git", &["describe", "--tags", "--match=v*", "--long"]);
+
+  match version {
+    None => {
+      panic!("GOT NONE");
+    }
+    Some(v) if v.is_empty() => {
+      panic!("GOT EMPTY");
+    }
+    _ => {}
+  };
+
+  return version;
 }
 
 #[must_use]
