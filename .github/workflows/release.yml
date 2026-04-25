@@ -15,7 +15,7 @@ jobs:
   changelog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
       - name: Get release notes from changelog
         id: release_notes
         run: |
@@ -40,7 +40,7 @@ jobs:
       DOCKER_WORKSPACE: /workspace
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - uses: actions/setup-node@v6
@@ -89,7 +89,7 @@ jobs:
       DOCKER_WORKSPACE: /workspace
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - uses: actions/setup-node@v6
@@ -136,7 +136,7 @@ jobs:
     env:
       RUST_TARGET: aarch64-apple-darwin
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Install Dependencies
@@ -170,7 +170,7 @@ jobs:
     env:
       RUST_TARGET: x86_64-apple-darwin
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Install Dependencies
@@ -204,7 +204,7 @@ jobs:
     env:
       RUST_TARGET: x86_64-pc-windows-msvc
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - uses: MinoruSekine/setup-scoop@v4.0.1
@@ -239,7 +239,7 @@ jobs:
     env:
       RUST_TARGET: wasm32-wasip2
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
       - name: Install Dependencies

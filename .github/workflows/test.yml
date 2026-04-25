@@ -12,8 +12,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: df -h
-      - name: Free Disk Space (Ubuntu)
+      - name: Monitor Disk Space (Start)
+        run: df -h
+      - name: Free Disk Space
         uses: jlumbroso/free-disk-space@main
         with:
           # this might remove tools that are actually needed,
@@ -29,9 +30,11 @@ jobs:
           docker-images: true
           swap-storage: true
       - run: df -h
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'true'
+      - name: Inspect Checkout
+        run: git describe --tags
       - name: Install Dependencies
         run: |
           sudo apt-get update && \
@@ -82,4 +85,5 @@ jobs:
         with:
           extra_args: "--all-files --verbose"
       # Just to monitor the runner's disk consumption.
-      - run: df -h
+      - name: Monitor Disk Space (End)
+        run: df -h
