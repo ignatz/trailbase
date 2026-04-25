@@ -160,7 +160,12 @@ fn get_output(cmd: &str, args: &[&str]) -> Option<String> {
   };
   let mut stdout = output.status.success().then_some(output.stdout)?;
 
-  println!("GOT: {stdout:?}");
+  let crate_name = env!("CARGO_PKG_NAME").to_string();
+  println!(
+    "get_output({crate_name}) GOT '{cmd} {}': {}",
+    args.join(" "),
+    String::from_utf8_lossy(&stdout)
+  );
   // Remove trailing newlines.
   while stdout.last().copied() == Some(b'\n') {
     stdout.pop();
