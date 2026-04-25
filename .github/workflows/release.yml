@@ -263,8 +263,8 @@ jobs:
 
       - name: Package Artifacts
         run: |
-          ${{ env.BINARY_PATH }} --version && \
-          zip -r -j ${{ env.ARCHIVE_NAME }} ${{ env.BINARY_PATH }} CHANGELOG.md LICENSE
+          ${{ env.BINARY_PATH }} --version &&
+            zip -r -j ${{ env.ARCHIVE_NAME }} ${{ env.BINARY_PATH }} CHANGELOG.md LICENSE
       - name: Release binaries
         uses: softprops/action-gh-release@v2
         with:
