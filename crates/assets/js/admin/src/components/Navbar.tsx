@@ -9,8 +9,8 @@ import {
   TbOutlineChartDots3,
   TbOutlineTimeline,
   TbOutlineSettings,
-  TbMoon,
-  TbSun,
+  TbOutlineMoon,
+  TbOutlineSun,
 } from "solid-icons/tb";
 
 import { AuthButton } from "@/components/auth/AuthButton";
@@ -151,9 +151,9 @@ function NavFooter(props: { horizontal: boolean }) {
           >
             <Show
               when={theme() === "dark"}
-              fallback={<TbMoon size={iconSize(props.horizontal)} />}
+              fallback={<TbOutlineMoon size={iconSize(props.horizontal)} />}
             >
-              <TbSun size={iconSize(props.horizontal)} />
+              <TbOutlineSun size={iconSize(props.horizontal)} />
             </Show>
           </button>
         </TooltipTrigger>
