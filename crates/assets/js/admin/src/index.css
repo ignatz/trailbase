@@ -286,6 +286,24 @@
   body {
     font-family: "Inter", sans-serif;
   }
+
+  a:not([class]) {
+    color: var(--color-accent-600);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: var(--color-accent-900);
+    }
+
+    :where(.dark, [data-kb-theme="dark"]) & {
+      color: var(--color-accent-200);
+
+      &:hover {
+        color: #c8e8ff;
+      }
+    }
+  }
 }
 
 @media (max-width: 640px) {
