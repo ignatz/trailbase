@@ -9,9 +9,8 @@ pub enum Error {
   InvalidSpec,
 }
 
-type Finished = Result<(), wstd::http::Error>;
-
-pub type JobHandler = Box<dyn Fn(Responder) -> LocalBoxFuture<'static, Finished>>;
+pub type JobHandler =
+  Box<dyn Fn(Responder) -> LocalBoxFuture<'static, Result<(), wstd::http::Error>>>;
 
 pub struct Job {
   pub name: String,
@@ -44,7 +43,7 @@ impl Job {
       timeout: timeout_ms,
       handler: Box::new(move |responder| {
         let f = f.clone();
-        Box::pin(async move { responder.respond(f().await.into_response()).await })
+        return Box::pin(async move { responder.respond(f().await.into_response()).await });
       }),
     });
   }

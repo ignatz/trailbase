@@ -39,7 +39,7 @@ pub async fn get_prefs(key: &str) -> Result<Option<String>, PrefsError> {
     .into_parts();
 
   let bytes = body
-    .bytes_contents()
+    .contents()
     .await
     .map_err(|err| PrefsError::Other(err.into()))?;
 
@@ -78,7 +78,7 @@ pub async fn set_prefs(
     .into_parts();
 
   let bytes = body
-    .bytes_contents()
+    .contents()
     .await
     .map_err(|err| PrefsError::Other(err.into()))?;
 

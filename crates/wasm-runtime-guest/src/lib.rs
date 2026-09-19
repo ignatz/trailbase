@@ -45,8 +45,6 @@ use wstd::http::{Body, Request};
 use crate::http::{HttpRoute, Method, StatusCode, empty_error_response};
 use crate::job::Job;
 
-type Finished = Result<(), wstd::http::Error>;
-
 // Needed for export macro
 pub use static_assertions::assert_impl_all;
 pub use wstd::__internal::wasip2 as __wasi;
@@ -284,18 +282,28 @@ pub struct HttpIncomingHandler<T: Guest> {
 }
 
 impl<T: Guest> HttpIncomingHandler<T> {
-  async fn handle(request: Request<Body>, responder: Responder) -> Finished {
+  async fn handle_internal(request: Request<Body>, responder: Responder) {
     let path = request.uri().path();
     let method = request.method();
+
+    #[inline]
+    fn handle_responder_result(result: Result<(), anyhow::Error>) {
+      if let Err(err) = result {
+        log::debug!("responder failed: {err}");
+      }
+    }
 
     let Some(context) = request
       .headers()
       .get("__context")
       .and_then(|h| serde_json::from_slice::<HttpContext>(h.as_bytes()).ok())
     else {
-      return responder
-        .respond(empty_error_response(StatusCode::INTERNAL_SERVER_ERROR))
-        .await;
+      handle_responder_result(
+        responder
+          .respond(empty_error_response(StatusCode::INTERNAL_SERVER_ERROR))
+          .await,
+      );
+      return;
     };
 
     log::debug!("WASM guest received HTTP request {path}: {context:?}");
@@ -306,7 +314,7 @@ impl<T: Guest> HttpIncomingHandler<T> {
           .into_iter()
           .find(|route| route.method == method && route.path == context.registered_path)
         {
-          return handler(context, request, responder).await;
+          handle_responder_result(handler(context, request, responder).await);
         }
       }
       HttpContextKind::Job => {
@@ -314,15 +322,17 @@ impl<T: Guest> HttpIncomingHandler<T> {
           .into_iter()
           .find(|config| method == Method::GET && config.name == context.registered_path)
         {
-          return handler(responder).await;
+          handle_responder_result(handler(responder).await);
         }
       }
-      HttpContextKind::Unknown => {}
-    }
-
-    return responder
-      .respond(empty_error_response(StatusCode::NOT_FOUND))
-      .await;
+      HttpContextKind::Unknown => {
+        handle_responder_result(
+          responder
+            .respond(empty_error_response(StatusCode::NOT_FOUND))
+            .await,
+        );
+      }
+    };
   }
 }
 
@@ -337,7 +347,7 @@ impl<T: Guest> ::wstd::__internal::wasip2::exports::http::incoming_handler::Gues
 
     match ::wstd::http::request::try_from_incoming(request) {
       Ok(request) => {
-        let _ = ::wstd::runtime::block_on(async { Self::handle(request, responder).await });
+        ::wstd::runtime::block_on(async { Self::handle_internal(request, responder).await });
       }
       Err(err) => responder.fail(err),
     };

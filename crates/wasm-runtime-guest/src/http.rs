@@ -6,8 +6,6 @@ use wstd::http::server::Responder;
 pub use http::{HeaderMap, HeaderValue, Method, StatusCode, Version, header};
 pub use trailbase_wasm_common::HttpContextUser as User;
 
-type Finished = Result<(), wstd::http::Error>;
-
 pub type Response<T = wstd::http::Body> = http::Response<T>;
 
 #[derive(Clone, Debug)]
@@ -43,7 +41,7 @@ type HttpHandler = Box<
     HttpContext,
     http::Request<wstd::http::Body>,
     wstd::http::server::Responder,
-  ) -> LocalBoxFuture<'static, Finished>,
+  ) -> LocalBoxFuture<'static, Result<(), anyhow::Error>>,
 >;
 
 pub struct HttpRoute {
@@ -89,7 +87,7 @@ impl HttpRoute {
 
             // TODO: Poll tasks.
 
-            response
+            return response;
           });
         },
       ),
@@ -302,6 +300,12 @@ impl IntoBody for &str {
 }
 
 impl IntoBody for Vec<u8> {
+  fn into_body(self) -> wstd::http::Body {
+    return self.into();
+  }
+}
+
+impl IntoBody for bytes::Bytes {
   fn into_body(self) -> wstd::http::Body {
     return self.into();
   }

@@ -110,7 +110,7 @@ pub async fn query(
     .into_parts();
 
   let bytes = body
-    .bytes_contents()
+    .contents()
     .await
     .map_err(|err| Error::Other(err.into()))?;
 
@@ -156,7 +156,7 @@ pub async fn execute(
     .into_parts();
 
   let bytes = body
-    .bytes_contents()
+    .contents()
     .await
     .map_err(|err| Error::Other(err.into()))?;
 
@@ -189,7 +189,7 @@ pub async fn execute_batch(query: impl std::string::ToString) -> Result<(), Erro
     .into_parts();
 
   let bytes = body
-    .bytes_contents()
+    .contents()
     .await
     .map_err(|err| Error::Other(err.into()))?;
 
