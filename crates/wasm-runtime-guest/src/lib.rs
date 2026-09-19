@@ -39,16 +39,17 @@ pub mod time;
 use std::sync::OnceLock;
 use trailbase_wasm_common::manifest::GuestRuntime;
 use trailbase_wasm_common::{HttpContext, HttpContextKind};
-use wstd::http::Request;
-use wstd::http::body::IncomingBody;
-use wstd::http::server::{Finished, Responder};
+use wstd::http::server::Responder;
+use wstd::http::{Body, Request};
 
 use crate::http::{HttpRoute, Method, StatusCode, empty_error_response};
 use crate::job::Job;
 
+type Finished = Result<(), wstd::http::Error>;
+
 // Needed for export macro
 pub use static_assertions::assert_impl_all;
-pub use wstd::wasip2 as __wasi;
+pub use wstd::__internal::wasip2 as __wasi;
 
 pub mod sqlite {
   pub use crate::wit::exports::trailbase::component::sqlite_function_endpoint::{Error, Value};
@@ -283,7 +284,7 @@ pub struct HttpIncomingHandler<T: Guest> {
 }
 
 impl<T: Guest> HttpIncomingHandler<T> {
-  async fn handle(request: Request<IncomingBody>, responder: Responder) -> Finished {
+  async fn handle(request: Request<Body>, responder: Responder) -> Finished {
     let path = request.uri().path();
     let method = request.method();
 
@@ -325,15 +326,19 @@ impl<T: Guest> HttpIncomingHandler<T> {
   }
 }
 
-impl<T: Guest> ::wstd::wasip2::exports::http::incoming_handler::Guest for HttpIncomingHandler<T> {
+impl<T: Guest> ::wstd::__internal::wasip2::exports::http::incoming_handler::Guest
+  for HttpIncomingHandler<T>
+{
   fn handle(
-    request: ::wstd::wasip2::http::types::IncomingRequest,
-    response_out: ::wstd::wasip2::http::types::ResponseOutparam,
+    request: ::wstd::__internal::wasip2::http::types::IncomingRequest,
+    response_out: ::wstd::__internal::wasip2::http::types::ResponseOutparam,
   ) {
     let responder = Responder::new(response_out);
 
-    let _finished: Finished = match ::wstd::http::request::try_from_incoming(request) {
-      Ok(request) => ::wstd::runtime::block_on(async { Self::handle(request, responder).await }),
+    match ::wstd::http::request::try_from_incoming(request) {
+      Ok(request) => {
+        let _ = ::wstd::runtime::block_on(async { Self::handle(request, responder).await });
+      }
       Err(err) => responder.fail(err),
     };
   }

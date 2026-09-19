@@ -1,6 +1,5 @@
 use thiserror::Error;
 use trailbase_wasm_common::{PrefsRequest, PrefsResponse};
-use wstd::http::body::IntoBody;
 use wstd::http::{Client, Request};
 
 #[derive(Error, Debug)]
@@ -29,7 +28,7 @@ pub async fn get_prefs(key: &str) -> Result<Option<String>, PrefsError> {
   let request = Request::builder()
     .uri("http://__prefs")
     .method("POST")
-    .body(serde_json::to_vec(&r)?.into_body())
+    .body(wstd::http::Body::from(serde_json::to_vec(&r)?))
     .map_err(|err| PrefsError::Other(err.into()))?;
 
   let client = Client::new();
@@ -40,7 +39,7 @@ pub async fn get_prefs(key: &str) -> Result<Option<String>, PrefsError> {
     .into_parts();
 
   let bytes = body
-    .bytes()
+    .bytes_contents()
     .await
     .map_err(|err| PrefsError::Other(err.into()))?;
 
@@ -68,7 +67,7 @@ pub async fn set_prefs(
   let request = Request::builder()
     .uri("http://__prefs")
     .method("POST")
-    .body(serde_json::to_vec(&r)?.into_body())
+    .body(wstd::http::Body::from(serde_json::to_vec(&r)?))
     .map_err(|err| PrefsError::Other(err.into()))?;
 
   let client = Client::new();
@@ -79,7 +78,7 @@ pub async fn set_prefs(
     .into_parts();
 
   let bytes = body
-    .bytes()
+    .bytes_contents()
     .await
     .map_err(|err| PrefsError::Other(err.into()))?;
 

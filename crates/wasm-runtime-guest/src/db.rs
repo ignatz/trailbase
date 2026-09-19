@@ -1,5 +1,4 @@
 use trailbase_sqlvalue::{Blob, DecodeError, SqlValue};
-use wstd::http::body::IntoBody;
 use wstd::http::{Client, Request};
 
 use crate::wit::trailbase::database::sqlite::Transaction as WasiTransaction;
@@ -100,7 +99,7 @@ pub async fn query(
   let request = Request::builder()
     .uri("http://__sqlite/query")
     .method("POST")
-    .body(serde_json::to_vec(&r)?.into_body())
+    .body(wstd::http::Body::from(serde_json::to_vec(&r)?))
     .map_err(|err| Error::Other(err.into()))?;
 
   let client = Client::new();
@@ -110,7 +109,10 @@ pub async fn query(
     .map_err(|err| Error::Other(err.into()))?
     .into_parts();
 
-  let bytes = body.bytes().await.map_err(|err| Error::Other(err.into()))?;
+  let bytes = body
+    .bytes_contents()
+    .await
+    .map_err(|err| Error::Other(err.into()))?;
 
   return match serde_json::from_slice(&bytes) {
     Ok(SqliteResponse::Query { rows }) => Ok(
@@ -143,7 +145,7 @@ pub async fn execute(
   let request = Request::builder()
     .uri("http://__sqlite/execute")
     .method("POST")
-    .body(serde_json::to_vec(&r)?.into_body())
+    .body(wstd::http::Body::from(serde_json::to_vec(&r)?))
     .map_err(|err| Error::Other(err.into()))?;
 
   let client = Client::new();
@@ -153,7 +155,10 @@ pub async fn execute(
     .map_err(|err| Error::Other(err.into()))?
     .into_parts();
 
-  let bytes = body.bytes().await.map_err(|err| Error::Other(err.into()))?;
+  let bytes = body
+    .bytes_contents()
+    .await
+    .map_err(|err| Error::Other(err.into()))?;
 
   return match serde_json::from_slice(&bytes) {
     Ok(SqliteResponse::Execute { rows_affected }) => Ok(rows_affected),
@@ -173,7 +178,7 @@ pub async fn execute_batch(query: impl std::string::ToString) -> Result<(), Erro
   let request = Request::builder()
     .uri("http://__sqlite/batch")
     .method("POST")
-    .body(serde_json::to_vec(&r)?.into_body())
+    .body(wstd::http::Body::from(serde_json::to_vec(&r)?))
     .map_err(|err| Error::Other(err.into()))?;
 
   let client = Client::new();
@@ -183,7 +188,10 @@ pub async fn execute_batch(query: impl std::string::ToString) -> Result<(), Erro
     .map_err(|err| Error::Other(err.into()))?
     .into_parts();
 
-  let bytes = body.bytes().await.map_err(|err| Error::Other(err.into()))?;
+  let bytes = body
+    .bytes_contents()
+    .await
+    .map_err(|err| Error::Other(err.into()))?;
 
   return match serde_json::from_slice(&bytes) {
     Ok(SqliteResponse::ExecuteBatch) => Ok(()),

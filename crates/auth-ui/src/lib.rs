@@ -563,7 +563,7 @@ async fn get_settings_handler(_req: Request) -> Result<Response, HttpError> {
 }
 
 async fn set_settings_handler(mut req: Request) -> Result<Response, HttpError> {
-  let body = req.body().bytes().await.map_err(internal)?;
+  let body = req.body().contents().await.map_err(internal)?;
 
   let _ = SETTINGS_CACHE.lock().map(|mut guard| *guard = None);
 
