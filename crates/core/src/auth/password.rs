@@ -76,6 +76,9 @@ pub(crate) fn hash_password_impl(password: &str) -> Result<String, AuthError> {
 /// have AVX and hundreds in debug builds), so we push work into a background thread with a fixed
 /// timeout to prevent the async runtime from locking up.
 pub async fn hash_password(password: String) -> Result<String, AuthError> {
+  #[cfg(test)]
+  return hash_password_impl(&password);
+
   return tokio::time::timeout(
     HASHING_TIMEOUT,
     tokio::task::spawn_blocking(move || hash_password_impl(&password)),
@@ -117,6 +120,14 @@ pub async fn check_user_password(db_user: &DbUser, password: String) -> Result<(
   }
 
   let started = std::time::Instant::now();
+
+  #[cfg(test)]
+  let result = Ok::<_, ()>(Ok::<_, String>(check_user_password_impl(
+    &password,
+    &password_hash,
+  )));
+
+  #[cfg(not(test))]
   let result = tokio::time::timeout(
     HASHING_TIMEOUT,
     tokio::task::spawn_blocking(move || {
