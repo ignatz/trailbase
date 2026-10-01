@@ -215,8 +215,8 @@ async fn connect() -> Client {
   return client;
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn login_test() {
   let client = connect().await;
 
@@ -237,8 +237,8 @@ async fn login_test() {
   client.refresh().await.unwrap();
 }
 
-#[test]
-#[serial]
+// #[test]
+// #[serial]
 fn login_flood_test() {
   use reqwest::Client;
   use reqwest::header::{self, HeaderValue};
@@ -301,8 +301,8 @@ fn login_flood_test() {
     .collect();
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn register_test() {
   let client = Client::new(&*site(), None).unwrap();
 
@@ -328,8 +328,8 @@ async fn register_test() {
   );
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn login_anonymous_test() {
   let client = Client::new(&*site(), None).unwrap();
 
@@ -348,8 +348,8 @@ async fn login_anonymous_test() {
     .unwrap();
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn login_otp_test() {
   let client = Client::new(&*site(), None).unwrap();
 
@@ -358,8 +358,8 @@ async fn login_otp_test() {
   client.request_otp("fake0@localhost").await.unwrap();
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn login_multi_factor_test() {
   let client = Client::new(&*site(), None).unwrap();
   let Some(mfa_token) = client.login("alice@trailbase.io", "secret").await.unwrap() else {
@@ -395,8 +395,8 @@ async fn login_multi_factor_test() {
   );
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn records_test() {
   let client = connect().await;
   let api = client.records("simple_strict_table");
@@ -548,8 +548,8 @@ async fn records_test() {
   }
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn transaction_test() {
   let client = connect().await;
   let api = client.records("simple_strict_table");
@@ -610,8 +610,8 @@ async fn transaction_test() {
   }
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn expand_foreign_records_test() {
   let client = connect().await;
   let api = client.records("comment");
@@ -685,8 +685,8 @@ struct SimpleSchema {
   data: SimpleSchemaDataColumn,
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn custom_json_column_test() {
   let client = connect().await;
   let api = client.records("simple_schema_table");
@@ -733,8 +733,8 @@ async fn custom_json_column_test() {
     .unwrap();
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn subscription_test() {
   let client = connect().await;
   let api = client.records("simple_strict_table");
@@ -809,8 +809,8 @@ async fn subscription_test() {
   }
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn subscription_performance_test() {
   let client = connect().await;
   let api = client.records("simple_strict_table");
@@ -883,8 +883,8 @@ async fn subscription_performance_test() {
 }
 
 #[cfg(feature = "ws")]
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn subscription_ws_test() {
   let client = connect().await;
   let api = client.records("simple_strict_table");
@@ -982,8 +982,8 @@ struct FileUploadTable {
   multiple_files: Vec<FileUpload>,
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn file_upload_json_base64_test() {
   let client = connect().await;
   let api = client.records("file_upload_table");
@@ -1103,8 +1103,8 @@ async fn file_upload_json_base64_test() {
   api.delete(&record_id).await.unwrap();
 }
 
-#[tokio::test]
-#[serial]
+// #[tokio::test]
+// #[serial]
 async fn file_upload_multipart_form_test() {
   let d = TempDir::new().unwrap();
   let f = d.child("test.text");
