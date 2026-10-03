@@ -609,7 +609,7 @@ importers:
     devDependencies:
       '@astrojs/solid-js':
         specifier: ^7.0.2
-        version: 7.0.2(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@16.18.126)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))))(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(yaml@2.9.1)
+        version: 7.0.2(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2))(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(yaml@2.9.1)
       '@eslint/js':
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))
@@ -825,8 +825,8 @@ importers:
   examples/data-cli-tutorial:
     dependencies:
       csv-parse:
-        specifier: ^5.6.0
-        version: 5.6.0
+        specifier: ^7.0.3
+        version: 7.0.3
       trailbase:
         specifier: ^0.14.3
         version: 0.14.3
@@ -4308,8 +4308,8 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  csv-parse@5.6.0:
-    resolution: {integrity: sha512-l3nz3euub2QMg5ouu5U09Ew9Wf6/wQ8I++ch1loQ0ljmzhmfZYrH9fflS22i/PQEvsPvxCwxgz5q7UB8K1JO4Q==}
+  csv-parse@7.0.3:
+    resolution: {integrity: sha512-YFd3QM/yo17vH91L1IOZuvl09zM0zEEtdfTcOCKWcMdM++MNaQSyp09slXyFCLaPXvHstQFx/xC8myiFHSMUvw==}
 
   data-urls@7.0.0:
     resolution: {integrity: sha512-23XHcCF+coGYevirZceTVD7NdJOqVn+49IHyxgszm+JIiHLoB2TkmPtsYkNWT1pvRSGkc35L6NHs0yHkN2SumA==}
@@ -7784,12 +7784,12 @@ snapshots:
       sitemap: 9.0.1
       zod: 4.6.5
 
-  '@astrojs/solid-js@7.0.2(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@16.18.126)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))))(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(yaml@2.9.1)':
+  '@astrojs/solid-js@7.0.2(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@26.6.3)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))))(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(yaml@2.9.1)':
     dependencies:
       solid-js: 1.9.15
-      vite: 8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
-      vite-plugin-solid: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@16.18.126)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@10.2.2)(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
-      vitefu: 1.1.3(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+      vite: 8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
+      vite-plugin-solid: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@26.6.3)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@10.2.2)(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+      vitefu: 1.1.3(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
     transitivePeerDependencies:
       - '@testing-library/jest-dom'
       - '@types/node'
@@ -7806,12 +7806,12 @@ snapshots:
       - tsx
       - yaml
 
-  '@astrojs/solid-js@7.0.2(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@26.6.3)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))))(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(yaml@2.9.1)':
+  '@astrojs/solid-js@7.0.2(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2))(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(yaml@2.9.1)':
     dependencies:
       solid-js: 1.9.15
-      vite: 8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
-      vite-plugin-solid: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@26.6.3)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@10.2.2)(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
-      vitefu: 1.1.3(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+      vite: 8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
+      vite-plugin-solid: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2))(solid-js@1.9.15)(supports-color@10.2.2)(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+      vitefu: 1.1.3(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
     transitivePeerDependencies:
       - '@testing-library/jest-dom'
       - '@types/node'
@@ -9967,19 +9967,6 @@ snapshots:
       picocolors: 1.1.1
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@16.18.126)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))':
-    dependencies:
-      '@adobe/css-tools': 4.5.0
-      '@testing-library/dom': 10.4.2
-      aria-query: 5.3.2
-      css.escape: 1.5.1
-      dom-accessibility-api: 0.6.3
-      picocolors: 1.1.1
-      redent: 3.0.0
-    optionalDependencies:
-      vitest: 4.1.11(@types/node@16.18.126)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
-    optional: true
-
   '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@26.6.3)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))':
     dependencies:
       '@adobe/css-tools': 4.5.0
@@ -10334,15 +10321,6 @@ snapshots:
       '@vitest/utils': 4.1.11
       chai: 6.3.0
       tinyrainbow: 3.2.0
-
-  '@vitest/mocker@4.1.11(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))':
-    dependencies:
-      '@vitest/spy': 4.1.11
-      estree-walker: 3.0.3
-      magic-string: 0.30.21
-    optionalDependencies:
-      vite: 8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
-    optional: true
 
   '@vitest/mocker@4.1.11(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
@@ -11176,7 +11154,7 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  csv-parse@5.6.0: {}
+  csv-parse@7.0.3: {}
 
   data-urls@7.0.0(@noble/hashes@2.4.0):
     dependencies:
@@ -14323,21 +14301,6 @@ snapshots:
       - typescript
       - webpack
 
-  vite-plugin-solid@2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@16.18.126)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@10.2.2)(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)):
-    dependencies:
-      '@babel/core': 7.29.7(supports-color@10.2.2)
-      '@types/babel__core': 7.20.5
-      babel-preset-solid: 1.9.15(@babel/core@7.29.7(supports-color@10.2.2))(solid-js@1.9.15)
-      merge-anything: 5.1.7
-      solid-js: 1.9.15
-      solid-refresh: 0.6.3(solid-js@1.9.15)(supports-color@10.2.2)
-      vite: 8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
-      vitefu: 1.1.3(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
-    optionalDependencies:
-      '@testing-library/jest-dom': 7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@16.18.126)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))
-    transitivePeerDependencies:
-      - supports-color
-
   vite-plugin-solid@2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@26.6.3)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@10.2.2)(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)):
     dependencies:
       '@babel/core': 7.29.7(supports-color@10.2.2)
@@ -14348,6 +14311,21 @@ snapshots:
       solid-refresh: 0.6.3(solid-js@1.9.15)(supports-color@10.2.2)
       vite: 8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
       vitefu: 1.1.3(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+    optionalDependencies:
+      '@testing-library/jest-dom': 7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@26.6.3)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))
+    transitivePeerDependencies:
+      - supports-color
+
+  vite-plugin-solid@2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2))(solid-js@1.9.15)(supports-color@10.2.2)(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)):
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@10.2.2)
+      '@types/babel__core': 7.20.5
+      babel-preset-solid: 1.9.15(@babel/core@7.29.7(supports-color@10.2.2))(solid-js@1.9.15)
+      merge-anything: 5.1.7
+      solid-js: 1.9.15
+      solid-refresh: 0.6.3(solid-js@1.9.15)(supports-color@10.2.2)
+      vite: 8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
+      vitefu: 1.1.3(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
     optionalDependencies:
       '@testing-library/jest-dom': 7.0.1(@testing-library/dom@10.4.2)(vitest@4.1.11(@types/node@26.6.3)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))
     transitivePeerDependencies:
@@ -14398,35 +14376,6 @@ snapshots:
   vitefu@1.1.3(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)):
     optionalDependencies:
       vite: 8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
-
-  vitest@4.1.11(@types/node@16.18.126)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)):
-    dependencies:
-      '@vitest/expect': 4.1.11
-      '@vitest/mocker': 4.1.11(vite@8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
-      '@vitest/pretty-format': 4.1.11
-      '@vitest/runner': 4.1.11
-      '@vitest/snapshot': 4.1.11
-      '@vitest/spy': 4.1.11
-      '@vitest/utils': 4.1.11
-      es-module-lexer: 2.3.2
-      expect-type: 1.4.0
-      magic-string: 0.30.21
-      obug: 2.2.1
-      pathe: 2.0.3
-      picomatch: 4.0.7
-      std-env: 4.3.0
-      tinybench: 2.9.0
-      tinyexec: 1.3.1
-      tinyglobby: 0.2.17
-      tinyrainbow: 3.2.0
-      vite: 8.3.1(@types/node@16.18.126)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
-      why-is-node-running: 2.3.0
-    optionalDependencies:
-      '@types/node': 16.18.126
-      jsdom: 30.1.1(@noble/hashes@2.4.0)
-    transitivePeerDependencies:
-      - msw
-    optional: true
 
   vitest@4.1.11(@types/node@26.6.3)(jsdom@30.1.1(@noble/hashes@2.4.0))(vite@8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)):
     dependencies:

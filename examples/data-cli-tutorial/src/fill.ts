@@ -32,7 +32,17 @@ while (true) {
 console.log(`Cleaned up ${cnt} movies`);
 
 const file = await readFile("data/Top_1000_IMDb_movies_New_version.csv");
-const records = parse(file, {
+const records = parse<{
+  rank: string;
+  name: string;
+  year: string;
+  watch_time: string;
+  rating: string;
+  metascore: string;
+  gross: string;
+  votes: string;
+  description: string;
+}>(file, {
   fromLine: 2,
   // prettier-ignore
   columns: ["rank", "name", "year", "watch_time", "rating", "metascore", "gross", "votes", "description"],
