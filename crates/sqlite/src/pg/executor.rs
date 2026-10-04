@@ -239,24 +239,16 @@ fn event_loop(
 #[cfg(test)]
 pub fn build_postgres_test_executor() -> Result<
   (
-    Arc<parking_lot::Mutex<Option<oliphaunt_wasix::OliphauntServer>>>,
+    Arc<parking_lot::Mutex<Option<oliphaunt_pgwire_server::OliphauntServer>>>,
     Executor,
   ),
   Error,
 > {
   use postgres::{Client, NoTls};
 
-  // let tmp_dir = tempfile::TempDir::new().unwrap();
-  // let db = oliphaunt_wasix::OliphauntServer::builder()
-  //   .listen(oliphaunt_wasix::ServerListen::unix(tmp_dir.path()))
-  //   .start()
-  //   .map_err(|err| Error::Other(err.into()))?;
-  // let pg_uri = format!(
-  //   "postgresql://postgres@/template1?host={}",
-  //   tmp_dir.path().to_string_lossy()
-  // );
-
-  let db = oliphaunt_wasix::OliphauntServer::builder().start().unwrap();
+  let db = oliphaunt_pgwire_server::OliphauntServer::builder()
+    .start()
+    .unwrap();
   let pg_uri = db.connection_string().to_string();
   log::debug!("Started PgLite: {pg_uri}");
 

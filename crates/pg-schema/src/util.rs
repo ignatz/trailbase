@@ -1,12 +1,12 @@
 #[cfg(test)]
 pub async fn test_connection() -> (
-  std::sync::Arc<parking_lot::Mutex<Option<oliphaunt_wasix::OliphauntServer>>>,
+  std::sync::Arc<parking_lot::Mutex<Option<oliphaunt_pgwire_server::OliphauntServer>>>,
   trailbase_sqlite::Connection,
 ) {
   let temp_dir = tempfile::TempDir::new().unwrap();
 
-  let db = oliphaunt_wasix::OliphauntServer::builder()
-    .listen(oliphaunt_wasix::ServerListen::unix(temp_dir.path()))
+  let db = oliphaunt_pgwire_server::OliphauntServer::builder()
+    .listen(oliphaunt_pgwire_server::ServerListen::unix(temp_dir.path()))
     .start()
     .unwrap();
 

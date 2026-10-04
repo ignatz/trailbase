@@ -694,7 +694,7 @@ static UNIQUE_CONN_ID: AtomicUsize = AtomicUsize::new(0);
 
 #[cfg(test)]
 mod tests {
-  use oliphaunt_wasix::OliphauntServer;
+  use oliphaunt_pgwire_server::OliphauntServer;
   use serde::Deserialize;
 
   use super::*;

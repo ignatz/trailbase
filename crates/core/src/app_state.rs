@@ -720,17 +720,17 @@ mod test_utils {
     let (pg_shutdown, pg_uri) = {
       // https://github.com/f0rr0/oliphaunt/blob/main/src/wasix/sdks/rust/src/oliphaunt/generated_extensions.rs
       let extensions = [
-        oliphaunt_wasix::Extension::PGCRYPTO,
+        oliphaunt_pgwire_server::Extension::PGCRYPTO,
         // Enable case-insensitive text columns.
-        oliphaunt_wasix::Extension::CITEXT,
+        oliphaunt_pgwire_server::Extension::CITEXT,
         // Enable postgis.
-        // oliphaunt_wasix::Extension::POSTGIS,
+        // oliphaunt_pgwire_server::Extension::POSTGIS,
       ];
 
       // Start the embedded Postgres.
-      let db = oliphaunt_wasix::OliphauntServer::builder()
+      let db = oliphaunt_pgwire_server::OliphauntServer::builder()
         .extensions(extensions)
-        .listen(oliphaunt_wasix::ServerListen::unix(data_dir.main_db_path()))
+        .listen(oliphaunt_pgwire_server::ServerListen::unix(data_dir.main_db_path()))
         .start()?;
       let pg_uri = db.connection_string().to_string();
 
