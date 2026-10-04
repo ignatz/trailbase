@@ -5203,6 +5203,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "oliphaunt-pgwire-server"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "07545e4841df9d5f339291b86e1437f1102fa017629f197480be3385fbf6a5d5"
+dependencies = [
+ "anyhow",
+ "oliphaunt-query",
+ "oliphaunt-wasix",
+ "tempfile",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
 name = "oliphaunt-query"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -8679,7 +8693,7 @@ dependencies = [
  "minijinja",
  "oauth2",
  "object_store",
- "oliphaunt-wasix",
+ "oliphaunt-pgwire-server",
  "once_cell",
  "parking_lot",
  "pin-project-lite",
@@ -8878,7 +8892,7 @@ version = "0.0.1"
 dependencies = [
  "itertools 0.15.0",
  "log",
- "oliphaunt-wasix",
+ "oliphaunt-pgwire-server",
  "parking_lot",
  "serde",
  "tempfile",
@@ -8981,7 +8995,7 @@ dependencies = [
  "glob",
  "itertools 0.15.0",
  "log",
- "oliphaunt-wasix",
+ "oliphaunt-pgwire-server",
  "parking_lot",
  "postgres",
  "rand 0.10.3",

@@ -730,7 +730,9 @@ mod test_utils {
       // Start the embedded Postgres.
       let db = oliphaunt_pgwire_server::OliphauntServer::builder()
         .extensions(extensions)
-        .listen(oliphaunt_pgwire_server::ServerListen::unix(data_dir.main_db_path()))
+        .listen(oliphaunt_pgwire_server::ServerListen::unix(
+          data_dir.main_db_path(),
+        ))
         .start()?;
       let pg_uri = db.connection_string().to_string();
 
