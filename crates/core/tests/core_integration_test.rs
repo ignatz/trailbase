@@ -27,11 +27,11 @@ struct PgSetup {
 fn start_pg() -> PgSetup {
   let db = oliphaunt_pgwire_server::OliphauntServer::builder()
     .extensions([
-      oliphaunt_pgwire_server::Extension::PGCRYPTO,
+      oliphaunt_wasix::Extension::PGCRYPTO,
       // Enable case-insensitive text columns.
-      oliphaunt_pgwire_server::Extension::CITEXT,
+      oliphaunt_wasix::Extension::CITEXT,
       // Enable postgis.
-      // oliphaunt_pgwire_server::Extension::POSTGIS,
+      // oliphaunt_wasix::Extension::POSTGIS,
     ])
     .start()
     .unwrap();
