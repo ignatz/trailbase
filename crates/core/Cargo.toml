@@ -141,8 +141,8 @@ env_logger = { workspace = true }
 eventsource-stream = { version = "0.2.3", default-features = false }
 indoc = "2.0.7"
 mimalloc = { workspace = true }
-oliphaunt-pgwire-server = { workspace = true }
-oliphaunt-wasix = { workspace = true }
+oliphaunt-pgwire-server = { workspace = true, features = ["extension-citext", "extension-pgcrypto"] }
+oliphaunt-wasix = { workspace = true, features = ["extension-citext", "extension-pgcrypto"] }
 quoted_printable = "0.5.2"
 rcgen = "0.14.10"
 rsa = "0.10.0-rc.18"
