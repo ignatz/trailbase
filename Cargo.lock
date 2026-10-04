@@ -5162,30 +5162,51 @@ name = "oliphaunt-extension-contrib-pg18-aot-linux-arm64"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "06ec88cbc82a6f5239c057774d3132281eff02559ef3592b619c0c9fe5d5d6f5"
+dependencies = [
+ "sha2 0.10.9",
+]
 
 [[package]]
 name = "oliphaunt-extension-contrib-pg18-aot-linux-x64"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1eabc3ed05d4293b0968613a1bfc82671e82b65163e2fb5a37c53b51542bfce1"
+dependencies = [
+ "sha2 0.10.9",
+]
 
 [[package]]
 name = "oliphaunt-extension-contrib-pg18-aot-macos-arm64"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4e6989a8f4534fe1c080bf21f8d775e1d2851ed409daa636862a4b6254fda7fd"
+dependencies = [
+ "sha2 0.10.9",
+]
 
 [[package]]
 name = "oliphaunt-extension-contrib-pg18-aot-windows-x64"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4369348101f2d9b13b1f242bacf35322d122c9381aba1d4e0c55e8f48abfb7f9"
+dependencies = [
+ "sha2 0.10.9",
+]
 
 [[package]]
 name = "oliphaunt-extension-contrib-pg18-wasix"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f91183cee91a889d9a5580f4ea786e0e7855b99011367fbece04acb55c9d5f3e"
+dependencies = [
+ "sha2 0.10.9",
+]
+
+[[package]]
+name = "oliphaunt-query"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "523a7416f6a830ef02928994a2a89e9fd9d01e4fe67b22f0480d377d5f9b235c"
 
 [[package]]
 name = "oliphaunt-wasix"
@@ -5227,12 +5248,6 @@ dependencies = [
  "webc",
  "zstd",
 ]
-
-[[package]]
-name = "oliphaunt-query"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "523a7416f6a830ef02928994a2a89e9fd9d01e4fe67b22f0480d377d5f9b235c"
 
 [[package]]
 name = "once_cell"
