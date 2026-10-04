@@ -4316,9 +4316,9 @@ dependencies = [
 
 [[package]]
 name = "liboliphaunt-wasix-aot-aarch64-apple-darwin"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c9049ab9fe12854f66809d335799c1d7a9fe8f83b6ec3b5cb37569e2fb77a95f"
+checksum = "d761ba691c3507aa1720d58d85e8febbd5047a98d96602da62578d159f4bed44"
 dependencies = [
  "serde_json",
  "sha2 0.10.9",
@@ -4326,9 +4326,9 @@ dependencies = [
 
 [[package]]
 name = "liboliphaunt-wasix-aot-aarch64-unknown-linux-gnu"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ebf4db27b9f3e90645865f0b44d9ed5b3d9fd8a54a4e5482d70763bdeff3015c"
+checksum = "214ea4cc86bde4ab36c0df0b59958683015942747f1cb162960f49eefb0f84f6"
 dependencies = [
  "serde_json",
  "sha2 0.10.9",
@@ -4336,9 +4336,9 @@ dependencies = [
 
 [[package]]
 name = "liboliphaunt-wasix-aot-x86_64-pc-windows-msvc"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d99ebe7e2c4fd9e826fbcde43d104205528177e67ba046c150ce60dc30b0f7cc"
+checksum = "481832f81f027115d10a154db08423565f6fbfb8c2232242aa0e1c87f0013425"
 dependencies = [
  "serde_json",
  "sha2 0.10.9",
@@ -4346,9 +4346,9 @@ dependencies = [
 
 [[package]]
 name = "liboliphaunt-wasix-aot-x86_64-unknown-linux-gnu"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e5901f3380f69980bd492deace358df16e207aab5379e474e9fe450238a4c0b2"
+checksum = "7913353ebe23768f921b7e7fb6b210ee34b73e53a065a8ef44d4763d1bf3dfb5"
 dependencies = [
  "serde_json",
  "sha2 0.10.9",
@@ -4356,9 +4356,9 @@ dependencies = [
 
 [[package]]
 name = "liboliphaunt-wasix-portable"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "47ff3f35d1db54cbf44f272eab71e520c721048c2f49f8b3291e6e7c231f0a5c"
+checksum = "7b159b73441440f6d871315b505f6f4c348410f1ee923d6c65aafa0e501b336e"
 dependencies = [
  "oliphaunt-extension-contrib-pg18-aot-linux-arm64",
  "oliphaunt-extension-contrib-pg18-aot-linux-x64",
@@ -5159,39 +5159,39 @@ dependencies = [
 
 [[package]]
 name = "oliphaunt-extension-contrib-pg18-aot-linux-arm64"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "22962116792ca188ed83d3d38b2976e9bc8afbcfafa8bd26e79c6509782851b2"
+checksum = "06ec88cbc82a6f5239c057774d3132281eff02559ef3592b619c0c9fe5d5d6f5"
 
 [[package]]
 name = "oliphaunt-extension-contrib-pg18-aot-linux-x64"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d238ebc710178eaef2cd6e4cdb81fe098629d9736b9bbfa71afdd0615daf9d3c"
+checksum = "1eabc3ed05d4293b0968613a1bfc82671e82b65163e2fb5a37c53b51542bfce1"
 
 [[package]]
 name = "oliphaunt-extension-contrib-pg18-aot-macos-arm64"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6be219f20450bde37c8220be5ca40b13eccd9bc796ab5378825d1e742bd93e6d"
+checksum = "4e6989a8f4534fe1c080bf21f8d775e1d2851ed409daa636862a4b6254fda7fd"
 
 [[package]]
 name = "oliphaunt-extension-contrib-pg18-aot-windows-x64"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a29fb910e4039b219078e4572e9eb082050fff8648ef7f6656d7ca10d5afba1"
+checksum = "4369348101f2d9b13b1f242bacf35322d122c9381aba1d4e0c55e8f48abfb7f9"
 
 [[package]]
 name = "oliphaunt-extension-contrib-pg18-wasix"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f94f3c38b7237b40a5358593f68454040f58bf07747d4f9022f6a63418976098"
+checksum = "f91183cee91a889d9a5580f4ea786e0e7855b99011367fbece04acb55c9d5f3e"
 
 [[package]]
 name = "oliphaunt-wasix"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f0639810aeb8df626b42ea869cf332bcaefe69bf42274e883023c37c391226f5"
+checksum = "8b6a4f448bf50a267c637c492162d338f3cc31e4a83fd4f5c2a84616a1bdcb69"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -5206,6 +5206,7 @@ dependencies = [
  "liboliphaunt-wasix-aot-x86_64-pc-windows-msvc",
  "liboliphaunt-wasix-aot-x86_64-unknown-linux-gnu",
  "liboliphaunt-wasix-portable",
+ "oliphaunt-query",
  "serde",
  "serde_json",
  "sha2 0.10.9",
@@ -5226,6 +5227,12 @@ dependencies = [
  "webc",
  "zstd",
 ]
+
+[[package]]
+name = "oliphaunt-query"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "523a7416f6a830ef02928994a2a89e9fd9d01e4fe67b22f0480d377d5f9b235c"
 
 [[package]]
 name = "once_cell"
